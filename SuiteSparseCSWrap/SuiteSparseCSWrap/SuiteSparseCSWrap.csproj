@@ -1,73 +1,112 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1FDB8FE1-D563-425A-A115-5AED70561DC9}</ProjectGuid>
+    <TargetFramework>net48</TargetFramework>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuiteSparseCSWrap</RootNamespace>
     <AssemblyName>SuiteSparseCSWrapper</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
+
+    <!-- Prevent framework subfolders in output -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+    <!-- Configurations -->
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>x86;AnyCPU</Platforms>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+
+  <!-- Debug|x86 Configuration -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>bin\Debug\SuiteSparseCSWrapper.XML</DocumentationFile>
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+
+  <!-- Release|x86 Configuration -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>bin\Release\SuiteSparseCSWrapper.XML</DocumentationFile>
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <Optimize>true</Optimize>
   </PropertyGroup>
+
+  <!-- Debug|AnyCPU Configuration -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <DocumentationFile>bin\Debug\SuiteSparseCSWrapper.XML</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>false</Optimize>
   </PropertyGroup>
+
+  <!-- Release|AnyCPU Configuration -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>bin\Release\SuiteSparseCSWrapper.XML</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\Release\SuiteSparseCSWrapper.XML</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Matrix.cs" />
-    <Compile Include="Solver.cs" />
-  </ItemGroup>
+
+  <!-- References -->
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Company>KalininEI</Company>
+    <Product>SuiteSparseCSWrapper</Product>
+  </PropertyGroup>
+
+
+    <PropertyGroup>
+      <TargetFramework>net48</TargetFramework>
+      <OutputType>Library</OutputType>
+      <AppDesignerFolder>Properties</AppDesignerFolder>
+      <RootNamespace>SuiteSparseCSWrap</RootNamespace>
+      <AssemblyName>SuiteSparseCSWrapper</AssemblyName>
+
+      <!-- NuGet Packaging Settings -->
+      <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+      <PackageId>SuiteSparseCSWrapper</PackageId>
+      <Version>1.0.0</Version>
+      <Authors>KalininEI</Authors>
+      <Description>SuiteSparse wrapper for .NET</Description>
+      <PackageTags>suitesparse;sparse-matrix;linear-algebra</PackageTags>
+
+      <!-- Include native DLLs in package -->
+      <IncludeBuildOutput>true</IncludeBuildOutput>
+      <IncludeContentInPack>true</IncludeContentInPack>
+
+      <!-- Output Settings -->
+      <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+      <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+      <PackageOutputPath>..\..\..\NuGetPackages</PackageOutputPath>
+    </PropertyGroup>
+
+    <!-- Add native DLLs to the package -->
+  <!-- Include ALL required native DLLs -->
+  <ItemGroup>
+    <!-- x64 Dependencies -->
+    <None Include="..\..\winlib\lib64\*.dll" Pack="true" PackagePath="runtimes\win-x64\native" />
+
+    <!-- x86 Dependencies -->
+    <None Include="..\..\winlib\lib\*.dll" Pack="true" PackagePath="runtimes\win-x86\native" />
+
+    <!-- Add targets file -->
+    <None Include="SuiteSparseCSWrapper.targets"
+      Pack="true"
+      PackagePath="build\$(TargetFramework)" />
+  </ItemGroup>
 </Project>
